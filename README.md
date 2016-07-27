@@ -59,6 +59,8 @@ Configuration details:
   e.g. `issuer: "https://myprovider.com"`  
   It means to get configuration from "https://myprovider.com/.well-known/openid-configuration".
 
+Please note that this strategy uses the Rails session mechanism to keep track of the `state` and `nonce` parameters, both of which are generated during the request phase and verified during the callback phase. If you are creating an API-driven app, you must make sure that the session gets passed from the request phase to the callback phase (i.e., if you're using the Rails default cookie-based session store, you must not forget to catch the session cookie from the request phase and feed it back to your back end during the callback phase).
+
 For the full low down on OpenID Connect, please check out
 [the spec](http://openid.net/specs/openid-connect-core-1_0.html).
 
